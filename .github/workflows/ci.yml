@@ -28,9 +28,11 @@ jobs:
           node-version: '18'   # Set the Node.js version (match your local dev environment)
           cache: 'pnpm'        # Enable caching for pnpm to speed up installs
 
-      # Step 3: Install pnpm globally (since it's not pre-installed on runners)
-      - name: Install pnpm
-        run: npm install -g pnpm
+      # Step 3: Setup pnpm (use the same version as your local development environment)
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '9.0.0'   # Use the same version as your local development environment
 
       # Step 4: Install all project dependencies using pnpm
       - name: Install dependencies
