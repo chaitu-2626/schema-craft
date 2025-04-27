@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:17.4  # This line specifies which Docker image to use for this service. 
+                          # In this case, it's using the official `postgres` image with version `17.4`.
+    container_name: SchemaCraft-DB  # This line assigns a custom name to the container when it is run. 
+                                    # The container will be named `SchemaCraft-DB`.
+    environment:  # This section sets environment variables that will be used inside the container.
+      - POSTGRES_PASSWORD=${DB_PASSWORD}  # Sets the PostgreSQL password using the value of the environment variable `DB_PASSWORD`. 
+                                         # The password is stored securely in your environment or a `.env` file.
+      - POSTGRES_USER=${DB_USER}  # Sets the PostgreSQL username using the value of the environment variable `DB_USER`.
+      - POSTGRES_DB=${DB_NAME}  # Sets the name of the database to be created when the container starts, using the value of `DB_NAME`.
+    ports:
+      - "${DB_PORT}:5432"  # Maps a port on your local machine to the PostgreSQL port (5432) inside the container.
+                           # The value `${DB_PORT}` is expected to be set in the environment (or `.env` file) and 
+                           # it will be dynamically replaced at runtime.
+    volumes:
+      - ./db-data:/var/lib/postgresql/data  # This line mounts a volume, which is a directory on your host machine to a directory in the container.
+                                            # The `./db-data` directory will be mounted to `/var/lib/postgresql/data`, which is where 
+                                            # PostgreSQL stores its data. This ensures that your database data persists between container restarts.

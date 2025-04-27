@@ -1,0 +1,18 @@
+{
+	"extends": "@schema-craft/typescript-config/server",
+	"compilerOptions": {
+		"tsBuildInfoFile": "dist/.tsbuildinfo",
+		"baseUrl": ".",
+		"outDir": "dist",
+		"rootDir": "./",
+		"paths": {
+			"@/*": ["src/*"],
+			"$/*": ["*"],
+			"@schema": ["src/schema/index.js"],
+			"@seed": ["src/seed/index.js"],
+			"@seedData": ["src/seed/data/index.js"]
+		}
+	},
+	"include": ["src/**/*.ts", "src/**/*.json", "drizzle.config.ts"],
+	"exclude": ["node_modules", "dist"]
+}

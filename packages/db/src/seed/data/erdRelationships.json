@@ -1,0 +1,62 @@
+[
+	{
+		"fromAttributeId": "10000000-0000-0000-0000-000000000001",
+		"toAttributeId": "10000000-0000-0000-0000-000000000008",
+		"relationshipType": "one-to-many",
+		"createdBy": "00000000-0000-0000-0000-000000000001"
+	},
+	{
+		"fromAttributeId": "10000000-0000-0000-0000-000000000008",
+		"toAttributeId": "10000000-0000-0000-0000-000000000011",
+		"relationshipType": "one-to-many",
+		"createdBy": "00000000-0000-0000-0000-000000000002"
+	},
+	{
+		"fromAttributeId": "10000000-0000-0000-0000-000000000011",
+		"toAttributeId": "10000000-0000-0000-0000-000000000012",
+		"relationshipType": "many-to-one",
+		"createdBy": "00000000-0000-0000-0000-000000000003"
+	},
+	{
+		"fromAttributeId": "10000000-0000-0000-0000-000000000003",
+		"toAttributeId": "10000000-0000-0000-0000-000000000004",
+		"relationshipType": "one-to-one",
+		"createdBy": "00000000-0000-0000-0000-000000000001"
+	},
+	{
+		"fromAttributeId": "10000000-0000-0000-0000-000000000005",
+		"toAttributeId": "10000000-0000-0000-0000-000000000007",
+		"relationshipType": "one-to-many",
+		"createdBy": "00000000-0000-0000-0000-000000000001"
+	},
+	{
+		"fromAttributeId": "10000000-0000-0000-0000-000000000012",
+		"toAttributeId": "10000000-0000-0000-0000-000000000001",
+		"relationshipType": "many-to-many",
+		"createdBy": "00000000-0000-0000-0000-000000000004"
+	},
+	{
+		"fromAttributeId": "10000000-0000-0000-0000-000000000013",
+		"toAttributeId": "10000000-0000-0000-0000-000000000002",
+		"relationshipType": "one-to-one",
+		"createdBy": "00000000-0000-0000-0000-000000000003"
+	},
+	{
+		"fromAttributeId": "10000000-0000-0000-0000-000000000010",
+		"toAttributeId": "10000000-0000-0000-0000-000000000004",
+		"relationshipType": "many-to-one",
+		"createdBy": "00000000-0000-0000-0000-000000000002"
+	},
+	{
+		"fromAttributeId": "10000000-0000-0000-0000-000000000006",
+		"toAttributeId": "10000000-0000-0000-0000-000000000009",
+		"relationshipType": "one-to-many",
+		"createdBy": "00000000-0000-0000-0000-000000000001"
+	},
+	{
+		"fromAttributeId": "10000000-0000-0000-0000-000000000007",
+		"toAttributeId": "10000000-0000-0000-0000-000000000005",
+		"relationshipType": "many-to-many",
+		"createdBy": "00000000-0000-0000-0000-000000000001"
+	}
+]

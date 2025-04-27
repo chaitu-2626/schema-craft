@@ -1,0 +1,31 @@
+{
+	"name": "@schema-craft/db",
+	"version": "1.0.0",
+	"description": "This package provides database connection and ORM functionality for Schema Craft.",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@schema-craft/typescript-config": "workspace:*",
+		"@types/pg": "^8.11.14",
+		"drizzle-kit": "^0.31.0",
+		"tsc": "^2.0.4",
+		"tsc-alias": "^1.8.15",
+		"typescript": "5.8.2"
+	},
+	"dependencies": {
+		"@schema-craft/types": "workspace:*",
+		"dotenv": "^16.5.0",
+		"dotenv-expand": "^12.0.2",
+		"drizzle-orm": "^0.43.1",
+		"drizzle-zod": "^0.7.1",
+		"pg": "^8.15.6",
+		"postgres": "^3.4.5",
+		"zod": "^3.24.3"
+	}
+}
