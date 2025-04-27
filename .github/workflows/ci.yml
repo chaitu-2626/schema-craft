@@ -1,37 +1,62 @@
+# The name of the workflow, as displayed in the GitHub Actions UI.
 name: CI
 
+# Define the events that will trigger this workflow.
 on:
+  # Trigger the workflow when changes are pushed to the "main" branch.
   push:
     branches: [main]
+  
+  # Trigger the workflow when a pull request is created or updated, targeting the "main" branch.
   pull_request:
     branches: [main]
 
+# Define the jobs that will run in this workflow.
 jobs:
+  # This is the job that will handle the installation and build process.
   install-and-build:
+    # The job will run on the latest version of Ubuntu.
     runs-on: ubuntu-latest
+
+    # List of steps that will be executed in this job.
     steps:
+      
+      # Step 1: Checkout the repository's code.
+      # This step ensures that the latest code from the main branch is available on the runner.
       - name: Checkout code
-        uses: actions/checkout@v4                                         # :contentReference[oaicite:8]{index=8}
+        uses: actions/checkout@v4  # Uses the actions/checkout GitHub Action at version 4
 
+      # Step 2: Install pnpm globally.
+      # pnpm is a fast and efficient package manager. This step installs pnpm in the CI environment.
       - name: Install pnpm
-        uses: pnpm/action-setup@v4                                        # Official action :contentReference[oaicite:9]{index=9}
+        uses: pnpm/action-setup@v4  # Uses the pnpm/action-setup action to install pnpm
         with:
-          version: '9.0.0'                                                     # Pin to pnpm v9.x :contentReference[oaicite:10]{index=10}
+          version: '9.0.0'  # Specify the pnpm version to be installed. In this case, it’s version 9.0.0.
 
+      # Step 3: Setup Node.js environment.
+      # This step ensures that Node.js (version 18 in this case) is available for running npm or pnpm commands.
       - name: Setup Node.js
-        uses: actions/setup-node@v4                                      # Sets up Node and cache :contentReference[oaicite:11]{index=11}
+        uses: actions/setup-node@v4  # Uses the actions/setup-node GitHub Action at version 4
         with:
-          node-version: '18'
-          cache: 'pnpm'
+          node-version: '18'  # Use Node.js version 18 for the CI environment.
+          cache: 'pnpm'  # Cache pnpm dependencies to speed up future installs.
 
+      # Step 4: Install project dependencies.
+      # This step installs all dependencies for the project as defined in the pnpm-lock.yaml file.
       - name: Install dependencies
-        run: pnpm install                                               # pnpm now on PATH :contentReference[oaicite:12]{index=12}
+        run: pnpm install  # Executes the `pnpm install` command to install all dependencies listed in the lockfile.
 
+      # Step 5: Run linting.
+      # This step runs the linting task, which checks the code for any potential issues or style violations.
       - name: Run Lint
-        run: pnpm lint
+        run: pnpm lint  # Executes the `pnpm lint` command to check the code for linting errors.
 
+      # Step 6: Run type checks.
+      # This step runs TypeScript (or other tools) to perform static type checking to ensure type safety.
       - name: Run Type Check
-        run: pnpm check-types
+        run: pnpm check-types  # Executes the `pnpm check-types` command to ensure type safety in the code.
 
+      # Step 7: Build the project.
+      # This step builds the project by running the build command defined in your package.json or turbo.json file.
       - name: Build
-        run: pnpm build
+        run: pnpm build  # Executes the `pnpm build` command to build the project.
