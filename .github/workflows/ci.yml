@@ -1,37 +1,49 @@
+# Name of the GitHub Actions workflow shown in the Actions tab
 name: CI
 
+# Define when the workflow should run
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  push:               # Trigger the workflow on push events
+    branches:
+      - main          # Only run when changes are pushed to the "main" branch
+  pull_request:       # Also trigger when a pull request targets the "main" branch
+    branches:
+      - main
 
+# Define the jobs to run
 jobs:
-  install-and-build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
+  install-and-build:         # This is the name of the job
+    runs-on: ubuntu-latest   # Use the latest version of Ubuntu to run this job
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    steps:                   # List of steps in this job
 
+      # Step 1: Checkout your repository code onto the GitHub runner
+      - name: Checkout code
+        uses: actions/checkout@v4.2.1
+
+      # Step 2: Set up Node.js environment
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4.2.1
         with:
-          node-version: 18
-          cache: 'pnpm'
+          node-version: '18'   # Set the Node.js version (match your local dev environment)
+          cache: 'pnpm'        # Enable caching for pnpm to speed up installs
 
+      # Step 3: Install pnpm globally (since it's not pre-installed on runners)
       - name: Install pnpm
         run: npm install -g pnpm
 
+      # Step 4: Install all project dependencies using pnpm
       - name: Install dependencies
         run: pnpm install
 
-      - name: Lint
-        run: pnpm turbo lint
+      # Step 5: Run linting task across your monorepo (defined in turbo.json)
+      - name: Run Lint
+        run: pnpm lint
 
-      - name: Type Check
-        run: pnpm turbo check-types
+      # Step 6: Run static type checks (commonly using TypeScript)
+      - name: Run Type Check
+        run: pnpm check-types
 
+      # Step 7: Build your project (runs turbo build based on your turbo.json)
       - name: Build
-        run: pnpm turbo build
+        run: pnpm build
