@@ -1,51 +1,37 @@
-# Name of the GitHub Actions workflow shown in the Actions tab
 name: CI
 
-# Define when the workflow should run
 on:
-  push:               # Trigger the workflow on push events
-    branches:
-      - main          # Only run when changes are pushed to the "main" branch
-  pull_request:       # Also trigger when a pull request targets the "main" branch
-    branches:
-      - main
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
-# Define the jobs to run
 jobs:
-  install-and-build:         # This is the name of the job
-    runs-on: ubuntu-latest   # Use the latest version of Ubuntu to run this job
-
-    steps:                   # List of steps in this job
-
-      # Step 1: Checkout your repository code onto the GitHub runner
+  install-and-build:
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout code
-        uses: actions/checkout@v4.2.1
+        uses: actions/checkout@v4                                         # :contentReference[oaicite:8]{index=8}
 
-      # Step 2: Set up Node.js environment
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4                                        # Official action :contentReference[oaicite:9]{index=9}
+        with:
+          version: 9                                                     # Pin to pnpm v9.x :contentReference[oaicite:10]{index=10}
+
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4                                      # Sets up Node and cache :contentReference[oaicite:11]{index=11}
         with:
-          node-version: '18'   # Set the Node.js version (match your local dev environment)
-          cache: 'pnpm'        # Enable caching for pnpm to speed up installs
+          node-version: '18'
+          cache: 'pnpm'
 
-      # Step 3: Setup pnpm (use the same version as your local development environment)
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: '9.0.0'   # Use the same version as your local development environment
-
-      # Step 4: Install all project dependencies using pnpm
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install                                               # pnpm now on PATH :contentReference[oaicite:12]{index=12}
 
-      # Step 5: Run linting task across your monorepo (defined in turbo.json)
       - name: Run Lint
         run: pnpm lint
 
-      # Step 6: Run static type checks (commonly using TypeScript)
       - name: Run Type Check
         run: pnpm check-types
 
-      # Step 7: Build your project (runs turbo build based on your turbo.json)
       - name: Build
         run: pnpm build
