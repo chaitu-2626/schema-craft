@@ -17,8 +17,8 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@schema-craft/eslint-config": "workspace:*",
+    "@schema-craft/typescript-config": "workspace:*",
     "@types/node": "^22.14.0",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
