@@ -23,7 +23,7 @@ jobs:
 
       # Step 2: Set up Node.js environment
       - name: Setup Node.js
-        uses: actions/setup-node@v4.2.1
+        uses: actions/setup-node@v3
         with:
           node-version: '18'   # Set the Node.js version (match your local dev environment)
           cache: 'pnpm'        # Enable caching for pnpm to speed up installs
