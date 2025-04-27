@@ -16,7 +16,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v4                                        # Official action :contentReference[oaicite:9]{index=9}
         with:
-          version: 9                                                     # Pin to pnpm v9.x :contentReference[oaicite:10]{index=10}
+          version: '9.0.0'                                                     # Pin to pnpm v9.x :contentReference[oaicite:10]{index=10}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4                                      # Sets up Node and cache :contentReference[oaicite:11]{index=11}
