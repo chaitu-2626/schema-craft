@@ -166,9 +166,9 @@ importers:
       drizzle-kit:
         specifier: ^0.31.0
         version: 0.31.0
-      tsc:
-        specifier: ^2.0.4
-        version: 2.0.4
+      rimraf:
+        specifier: ^6.0.1
+        version: 6.0.1
       tsc-alias:
         specifier: ^1.8.15
         version: 1.8.15
@@ -2634,10 +2634,6 @@ packages:
   tsc-alias@1.8.15:
     resolution: {integrity: sha512-yKLVx8ddUurRwhVcS6JFF2ZjksOX2ZWDRIdgt+PQhJBDegIdAdilptiHsuAbx9UFxa16GFrxeKQ2kTcGvR6fkQ==}
     engines: {node: '>=16.20.2'}
-    hasBin: true
-
-  tsc@2.0.4:
-    resolution: {integrity: sha512-fzoSieZI5KKJVBYGvwbVZs/J5za84f2lSTLPYf6AGiIf43tZ3GNrI1QzTLcjtyDDP4aLxd46RTZq1nQxe7+k5Q==}
     hasBin: true
 
   tslib@1.14.1:
@@ -5365,8 +5361,6 @@ snapshots:
       mylas: 2.1.13
       normalize-path: 3.0.0
       plimit-lit: 1.6.1
-
-  tsc@2.0.4: {}
 
   tslib@1.14.1: {}
 
