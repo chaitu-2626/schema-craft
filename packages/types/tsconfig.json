@@ -1,0 +1,16 @@
+{
+	"extends": "@schema-craft/typescript-config/server",
+	"compilerOptions": {
+		"tsBuildInfoFile": "dist/.tsbuildinfo",
+		"baseUrl": ".",
+		"outDir": "dist",
+		"rootDir": "src",
+		"paths": {
+			"@enums": ["src/enums/index.ts"],
+			"@constants": ["src/constants/index.ts"],
+			"@validators": ["src/validators/index.ts"],
+		}
+	},
+	"include": ["src/**/*.ts"],
+	"exclude": ["node_modules", "dist"]
+}

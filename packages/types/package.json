@@ -1,0 +1,32 @@
+{
+	"name": "@schema-craft/types",
+	"version": "1.0.0",
+	"description": "This package contains TypeScript types for SchemaCraft.",
+	"type": "module",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"clean": "rimraf dist",
+		"dev": "pnpm run clean && tsc --build --watch",
+		"build": "pnpm run clean && tsc --build && tsc-alias"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"zod": "^3.24.3"
+	},
+	"devDependencies": {
+		"@schema-craft/typescript-config": "workspace:*",
+		"rimraf": "^6.0.1",
+		"tsc-alias": "^1.8.15",
+		"typescript": "5.8.2"
+	}
+}
