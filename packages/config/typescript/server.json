@@ -1,23 +1,18 @@
 {
 	"compilerOptions": {
-		"esModuleInterop": true,
-		"skipLibCheck": true,
 		"target": "ES2022",
-		"allowJs": true,
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"moduleDetection": "force",
+		"skipLibCheck": true,
 		"resolveJsonModule": true,
-		"moduleDetection": "auto",
-
 		"strict": true,
 		"noUncheckedIndexedAccess": true,
-
-		"moduleResolution": "NodeNext",
-		"module": "NodeNext",
 		"incremental": true,
 		"sourceMap": true,
 		"declaration": true,
 		"declarationMap": true,
 		"emitDeclarationOnly": false,
-		"lib": ["ES2022"],
 		"composite": true,
 		"forceConsistentCasingInFileNames": true
 	},
