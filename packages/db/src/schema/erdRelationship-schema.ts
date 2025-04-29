@@ -11,7 +11,7 @@ import { erdAttributeSchema } from './erdAttribute-schema.js';
 import { userSchema } from './user-schema.js';
 
 
-const relationshipTypeEnum = pgEnum('relationship_type', RelationshipType);
+export const relationshipTypeEnum = pgEnum('erd_relationship_type', RelationshipType);
 
 /**
  * Represents a relationship between two ERD attributes (columns).
@@ -28,8 +28,7 @@ export const erdRelationshipSchema = pgTable('ERD_RELATIONSHIP', {
 		.references(() => erdAttributeSchema.id, { onDelete: 'cascade' }),
 
 	//By default no relationship is created between the two attributes.
-	relationshipType: relationshipTypeEnum('erd_relationship_type')
-		.notNull()
+	relationshipType: relationshipTypeEnum()
 		.default(RelationshipType.None),
 
 	createdAt: timestamp('erd_created_at')
@@ -50,8 +49,8 @@ export const erdRelationshipSchema = pgTable('ERD_RELATIONSHIP', {
 		// Composite PK ensures uniqueness of relationships
 		primaryKey({ columns: [table.fromAttributeId, table.toAttributeId] }),
 
-		index('idx_erd_from_attribute_id').on(table.fromAttributeId),
-		index('idx_erd_to_attribute_id').on(table.toAttributeId),
+		index('idx_erd_relationship_from_attribute_id').on(table.fromAttributeId),
+		index('idx_erd_relationship_to_attribute_id').on(table.toAttributeId)
 	]);
 
 

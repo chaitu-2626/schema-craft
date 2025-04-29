@@ -13,8 +13,8 @@ import { userSchema } from './user-schema.js';
 import { erdEntitySchema } from './erdEntity-schema.js';
 
 
-const visibilityEnum = pgEnum('erd_diagram_visibility', DiagramVisibility);
-const databaseTypeEnum = pgEnum('erd_diagram_database_type', DatabaseType);
+export const visibilityEnum = pgEnum('erd_diagram_visibility', DiagramVisibility);
+export const databaseTypeEnum = pgEnum('erd_diagram_database_type', DatabaseType);
 
 /**
  * Represents the schema definition for the ERD diagram table in a PostgreSQL database.
@@ -37,8 +37,7 @@ export const erdDiagramSchema = pgTable('ERD_DIAGRAM', {
 	name: varchar('erd_diagram_name', { length: 300 }).notNull(),
 
 	// Diagram visibility (Private or Public)
-	visibility: visibilityEnum('erd_diagram_visibility')
-		.notNull()
+	visibility: visibilityEnum()
 		.default(DiagramVisibility.Private),
 
 	createdAt: timestamp('erd_diagram_created_at').defaultNow(),
@@ -50,13 +49,13 @@ export const erdDiagramSchema = pgTable('ERD_DIAGRAM', {
 		.references(() => userSchema.id, { onDelete: 'set null' }),
 
 	// Database type for the schema (MySQL, PostgreSQL, or SQL Server)
-	databaseType: databaseTypeEnum('erd_diagram_database_type')
-		.notNull()
+	databaseType: databaseTypeEnum()
 		.default(DatabaseType.MySQL),
+
 }, (table) => [
 	// Indexes for better performance on lookups related to foreign keys
-	index('idx_erd_team_id').on(table.teamId),
-	index('idx_erd_owner_id').on(table.ownerId),
+	index('idx_erd_diagram_team_id').on(table.teamId),
+	index('idx_erd_diagram_owner_id').on(table.ownerId),
 ]);
 
 /**

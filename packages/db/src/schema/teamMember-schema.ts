@@ -30,7 +30,7 @@ export const teamMemberSchema = pgTable('TEAM_MEMBER', {
         .notNull()
         .references(() => userSchema.id, { onDelete: 'cascade' }),
 
-    userRole: userRoleEnum('user_role').notNull().default(UserRole.Viewer),
+    userRole: userRoleEnum().default(UserRole.Viewer),
 
     joinedAt: timestamp('joined_at'),
 
@@ -47,8 +47,8 @@ export const teamMemberSchema = pgTable('TEAM_MEMBER', {
 
     // These indexes improve query performance when filtering by either `teamId` or `userId` individually.
     // Without these individual indexes, the composite primary key only optimizes queries involving both `teamId` and `userId` together.
-    index('idx_team_id').on(table.teamId),
-    index('idx_user_id').on(table.userId),
+    index('idx_team_member_team_id').on(table.teamId),
+    index('idx_team_member_user_id').on(table.userId),
 ]);
 
 

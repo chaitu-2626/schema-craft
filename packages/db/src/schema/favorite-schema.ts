@@ -27,8 +27,8 @@ export const favoriteSchema = pgTable('FAVORITE', {
 }, (table) => [
 	primaryKey({ columns: [table.favoriteBy, table.erdDiagramId] }),
 
-	index('idx_team_id').on(table.teamId),
-	index('idx_favorite_by').on(table.favoriteBy),
+	index('idx_favorite_team_id').on(table.teamId),
+	index('idx_favorite_user_id').on(table.favoriteBy)
 ]);
 
 

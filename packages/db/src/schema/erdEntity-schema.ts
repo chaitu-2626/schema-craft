@@ -46,7 +46,7 @@ export const erdEntitySchema = pgTable('ERD_ENTITY', {
 },
 	(table) => [
 		// Index for faster lookups on diagram-based queries
-		index('idx_erd_diagram_id').on(table.diagramId),
+		index('idx_erd_entity_diagram_id').on(table.diagramId)
 	]);
 
 /**

@@ -9,12 +9,12 @@
 	],
 	"scripts": {
 		"clean": "rimraf dist",
-		"dev": "pnpm run clean && tsc --build --watch",
-		"build": "pnpm run clean && tsc --build && tsc-alias",
-		"db:generate": "drizzle-kit generate:pg",
-		"db:migrate": "cross-env DB_MIGRATING=true tsx src/migrate.ts",
+		"dev": "pnpm clean && tsc --build --watch",
+		"build": "pnpm clean && tsc --build && tsc-alias",
+		"db:generate": "pnpm build && npx drizzle-kit generate --name=initial_migration --config dist/drizzle.config.js",
+		"db:migrate": "npx drizzle-kit migrate --config dist/drizzle.config.js",
 		"db:seed": "cross-env DB_SEEDING=true tsx src/seed.ts",
-		"db:studio": "pnpm build && npx drizzle-kit studio --config dist/drizzle.config.js --verbose"
+		"db:studio": "npx drizzle-kit studio --config dist/drizzle.config.js --verbose"
 	},
 	"keywords": [],
 	"author": "",
@@ -22,6 +22,7 @@
 	"devDependencies": {
 		"@schema-craft/typescript-config": "workspace:*",
 		"@types/pg": "^8.11.14",
+		"cross-env": "^7.0.3",
 		"drizzle-kit": "^0.31.0",
 		"rimraf": "^6.0.1",
 		"tsc-alias": "^1.8.15",

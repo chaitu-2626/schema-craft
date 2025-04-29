@@ -16,8 +16,8 @@ import { erdRelationshipSchema } from './erdRelationship-schema.js';
 import { userSchema } from './user-schema.js';
 
 
-const dataTypeEnum = pgEnum('data_type', MySQLDataType);
-const indexTypeEnum = pgEnum('index_type', IndexType);
+export const dataTypeEnum = pgEnum('erd_data_type', MySQLDataType);
+export const indexTypeEnum = pgEnum('erd_index_type', IndexType);
 
 /**
  * Represents an attribute (column) in an ERD entity/table.
@@ -34,7 +34,7 @@ export const erdAttributeSchema = pgTable('ERD_ATTRIBUTE', {
 
     name: varchar('erd_attribute_name', { length: 255 }).notNull(),
 
-    dataType: dataTypeEnum('erd_data_type')
+    dataType: dataTypeEnum()
         .notNull()
         .default(MySQLDataType.INT),
 
@@ -44,7 +44,9 @@ export const erdAttributeSchema = pgTable('ERD_ATTRIBUTE', {
 
     isUnsigned: boolean('erd_is_unsigned').default(false),
 
-    indexType: indexTypeEnum('erd_index_type').default(IndexType.None),
+    indexType: indexTypeEnum()
+        .notNull().
+        default(IndexType.None),
 
     defaultValue: varchar('erd_default_value', { length: 255 }),
 
@@ -74,7 +76,7 @@ export const erdAttributeSchema = pgTable('ERD_ATTRIBUTE', {
     (table) => [
 
         //Faster lookups for attributes by their entity ID
-        index('idx_erd_entity_id').on(table.entityId),
+        index('idx_erd_attribute_entity_id').on(table.entityId),
 
         //column index cannot be negative
         check('check_column_index_non_negative', sql`${table.columnIndex} >= 0`),

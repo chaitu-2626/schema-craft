@@ -27,7 +27,7 @@ export const teamSchema = pgTable('TEAM', {
 
 	updatedBy: uuid('updated_by').references(() => userSchema.id, { onDelete: 'set null' })
 }, (table) => [
-	index('idx_owner_id').on(table.ownerId)
+	index('idx_team_owner_id').on(table.ownerId)
 ]);
 
 export const teamRelations = relations(teamSchema, ({ many }) => ({
