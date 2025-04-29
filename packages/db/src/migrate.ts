@@ -28,12 +28,20 @@ if (!env.DB_MIGRATING) {
  * - The drizzle client (connected to the DB)
  * - The path to the migrations folder (from drizzle.config.ts)
  */
-await migrate(drizzleClient, {
-  migrationsFolder: config.out!, // `out` is where generated migration files live
-});
+async function runMigration() {
+  await migrate(drizzleClient, {
+    migrationsFolder: config.out!, // `out` is where generated migration files live
+  });
 
-/**
- * Clean up the connection after migration is complete.
- * This ensures Node.js exits properly without hanging.
- */
-await pgConnection.end();
+  // Success message after migration is done
+  console.log('Migration completed successfully.');
+
+  // Clean up the connection after migration is complete.
+  await pgConnection.end();
+}
+
+// Run the migration function
+runMigration().catch((err) => {
+  console.error('Migration failed', err);
+  process.exit(1);
+});
