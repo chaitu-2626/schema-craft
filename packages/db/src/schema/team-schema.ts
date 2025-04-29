@@ -9,7 +9,7 @@ import { relations } from 'drizzle-orm';
 import { teamMemberSchema } from './teamMember-schema.js';
 import { userSchema } from './user-schema.js';
 
-export const teamSchema = pgTable('team', {
+export const teamSchema = pgTable('TEAM', {
 	id: uuid('team_id').defaultRandom().primaryKey(),
 
 	name: varchar('name', { length: 255 }).notNull(),

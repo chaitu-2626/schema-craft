@@ -1,4 +1,4 @@
-import { drizzleClient } from '@/index.js';
+import { drizzleClient } from '@app';
 import { erdAttributeJson } from '@seedData';
 import { erdAttributeSchema } from '@schema';
 import { MySQLDataType, IndexType } from '@schema-craft/types';

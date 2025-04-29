@@ -1,6 +1,6 @@
 import { Table, getTableName, sql } from "drizzle-orm";
-import { type DrizzleClientType, drizzleClient } from './index.js';
-import env from "@/env.js";
+import { type DrizzleClientType, drizzleClient } from '@app';
+import env from "@env";
 import { erdAttributeSchema, erdDiagramSchema, erdEntitySchema, erdRelationshipSchema, favoriteSchema, teamMemberSchema, teamSchema, userSchema } from "@schema";
 import { erdAttributeSeeder, erdDiagramSeeder, erdEntitySeeder, erdRelationshipSeeder, favoriteSeeder, teamMemberSeeder, teamSeeder, userSeeder } from "@seed";
 

@@ -5,10 +5,10 @@ import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from "postgres";
 
 // Import all table schemas and relations
-import {schema} from '@schema';
+import * as schema from '@schema';
 
 // Import validated environment variables
-import env from "@/env.js";
+import env from "@env";
 
 /**
  * Create a PostgreSQL connection using the DATABASE_URL from your environment.

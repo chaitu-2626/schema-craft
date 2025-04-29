@@ -1,4 +1,4 @@
-import { drizzleClient } from '@/index.js';
+import { drizzleClient } from '@app';
 import { erdEntityJson } from '@seedData';
 import { erdEntitySchema } from '@schema';
 

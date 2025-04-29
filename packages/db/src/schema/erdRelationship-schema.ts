@@ -16,7 +16,7 @@ const relationshipTypeEnum = pgEnum('relationship_type', RelationshipType);
 /**
  * Represents a relationship between two ERD attributes (columns).
  */
-export const erdRelationshipSchema = pgTable('erd_relationship', {
+export const erdRelationshipSchema = pgTable('ERD_RELATIONSHIP', {
 
 	//Deletes the relationship when the attribute is deleted
 	fromAttributeId: uuid('erd_from_attribute_id')

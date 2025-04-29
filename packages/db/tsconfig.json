@@ -4,13 +4,17 @@
 		"tsBuildInfoFile": "dist/.tsbuildinfo",
 		"baseUrl": ".",
 		"outDir": "dist",
-		"rootDir": "./",
 		"paths": {
 			"@/*": ["src/*"],
 			"$/*": ["*"],
 			"@schema": ["src/schema/index.js"],
 			"@seed": ["src/seed/index.js"],
-			"@seedData": ["src/seed/data/index.js"]
+			"@seedData": ["src/seed/data/index.js"],
+			"@seeder": ["src/seed.js"],
+			"@env": ["src/env.js"],
+			"@migrate": ["src/migrate.js"],
+			"@type": ["src/types.js"],
+			"@app": ["src/index.js"]
 		}
 	},
 	"include": ["src/**/*.ts", "src/**/*.json", "drizzle.config.ts"],

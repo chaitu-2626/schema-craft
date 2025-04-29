@@ -1,4 +1,4 @@
-import { drizzleClient } from '@/index.js';
+import { drizzleClient } from '@app';
 import { erdRelationshipJson } from '@seedData';
 import { erdRelationshipSchema } from '@schema';
 import { RelationshipType } from '@schema-craft/types';

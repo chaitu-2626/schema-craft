@@ -10,7 +10,7 @@ import { teamSchema } from './team-schema.js';
 import { erdDiagramSchema } from './erdDiagram-schema.js';
 import { userSchema } from './user-schema.js';
 
-export const favoriteSchema = pgTable('favorite', {
+export const favoriteSchema = pgTable('FAVORITE', {
 	teamId: uuid('team_id')
 		.notNull()
 		.references(() => teamSchema.id, { onDelete: 'cascade' }),

@@ -5,10 +5,10 @@ import { migrate } from 'drizzle-orm/postgres-js/migrator';
 import config from '$/drizzle.config.js';
 
 // Import the Drizzle ORM client and Postgres connection you set up
-import { drizzleClient, pgConnection } from '@/index.js';
+import { drizzleClient, pgConnection } from '@app';
 
 // Import validated environment variables
-import env from '@/env.js';
+import env from '@env';
 
 /**
  * Safety Check

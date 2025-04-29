@@ -1,4 +1,4 @@
-import { drizzleClient } from '@/index.js';
+import { drizzleClient } from '@app';
 import { teamMemberJson } from '@seedData';
 import { teamMemberSchema } from '@schema';
 import { UserRole } from '@schema-craft/types'

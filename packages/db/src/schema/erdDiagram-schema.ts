@@ -20,7 +20,7 @@ const databaseTypeEnum = pgEnum('erd_diagram_database_type', DatabaseType);
  * Represents the schema definition for the ERD diagram table in a PostgreSQL database.
  * An ERD diagram can have multiple entities (tables) associated with it.
  */
-export const erdDiagramSchema = pgTable('erd_diagram', {
+export const erdDiagramSchema = pgTable('ERD_DIAGRAM', {
 	id: uuid('erd_diagram_id').defaultRandom().primaryKey(),
 
 	// FK to the team this diagram belongs to

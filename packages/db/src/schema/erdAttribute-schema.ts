@@ -23,7 +23,7 @@ const indexTypeEnum = pgEnum('index_type', IndexType);
  * Represents an attribute (column) in an ERD entity/table.
  * Attributes define the schema of an entity.
  */
-export const erdAttributeSchema = pgTable('ERD_ATTRIBUTES', {
+export const erdAttributeSchema = pgTable('ERD_ATTRIBUTE', {
 
     id: uuid('erd_attribute_id').defaultRandom().primaryKey(),
 

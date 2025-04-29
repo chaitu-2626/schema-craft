@@ -1,4 +1,4 @@
-import { drizzleClient } from '@/index.js';
+import { drizzleClient } from '@app';
 import {erdDiagramJson} from '@seedData';
 import { erdDiagramSchema } from '@schema';
 import { DiagramVisibility, DatabaseType } from '@schema-craft/types';

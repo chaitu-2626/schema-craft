@@ -1,4 +1,4 @@
-import { drizzleClient } from '@/index.js';
+import { drizzleClient } from '@app';
 import { teamJson } from '@seedData';
 import { teamSchema } from '@schema';
 

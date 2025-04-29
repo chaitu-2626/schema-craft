@@ -10,7 +10,11 @@
 	"scripts": {
 		"clean": "rimraf dist",
 		"dev": "pnpm run clean && tsc --build --watch",
-		"build": "pnpm run clean && tsc --build && tsc-alias"
+		"build": "pnpm run clean && tsc --build && tsc-alias",
+		"db:generate": "drizzle-kit generate:pg",
+		"db:migrate": "cross-env DB_MIGRATING=true tsx src/migrate.ts",
+		"db:seed": "cross-env DB_SEEDING=true tsx src/seed.ts",
+		"db:studio": "pnpm build && npx drizzle-kit studio --config dist/drizzle.config.js --verbose"
 	},
 	"keywords": [],
 	"author": "",
