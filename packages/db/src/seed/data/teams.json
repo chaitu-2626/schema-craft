@@ -1,5 +1,6 @@
 [
 	{
+		"id": "20000000-0000-0000-0000-000000000001",
 		"name": "Frontend Wizards",
 		"logo": "https://ik.imagekit.io/your_endpoint/teams/frontend.png",
 		"ownerId": "00000000-0000-0000-0000-000000000001",
@@ -8,6 +9,7 @@
 		"updatedBy": "00000000-0000-0000-0000-000000000002"
 	},
 	{
+		"id": "20000000-0000-0000-0000-000000000002",
 		"name": "Backend Gurus",
 		"logo": null,
 		"ownerId": "00000000-0000-0000-0000-000000000003",
@@ -16,6 +18,7 @@
 		"updatedBy": "00000000-0000-0000-0000-000000000004"
 	},
 	{
+		"id": "20000000-0000-0000-0000-000000000003",
 		"name": "Data Designers",
 		"logo": "https://ik.imagekit.io/your_endpoint/teams/data.png",
 		"ownerId": "00000000-0000-0000-0000-000000000005",
@@ -24,6 +27,7 @@
 		"updatedBy": null
 	},
 	{
+		"id": "20000000-0000-0000-0000-000000000004",
 		"name": "DevOps Ninjas",
 		"logo": null,
 		"ownerId": "00000000-0000-0000-0000-000000000006",
@@ -32,6 +36,7 @@
 		"updatedBy": "00000000-0000-0000-0000-000000000007"
 	},
 	{
+		"id": "20000000-0000-0000-0000-000000000005",
 		"name": "UI/UX Masters",
 		"logo": "https://ik.imagekit.io/your_endpoint/teams/uiux.jpg",
 		"ownerId": "00000000-0000-0000-0000-000000000008",

@@ -4,5 +4,5 @@ export { erdEntitySchema, erdEntityRelations } from './erdEntity-schema.js';
 export { erdRelationshipSchema, relationshipTypeEnum } from './erdRelationship-schema.js';
 export { favoriteSchema, favoriteRelations } from './favorite-schema.js';
 export { teamSchema, teamRelations } from './team-schema.js';
-export { teamMemberSchema, teamMemberRelations, userRoleEnum } from './teamMember-schema.js';
-export { userSchema } from './user-schema.js';
+export { teamMemberSchema, teamMemberRelations } from './teamMember-schema.js';
+export { userSchema, userRoleEnum } from './user-schema.js';

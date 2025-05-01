@@ -4,16 +4,13 @@ import {
     timestamp,
     primaryKey,
     index,
-    pgEnum,
     boolean
 } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 import { UserRole } from '@schema-craft/types';
 import { userSchema } from './user-schema.js';
 import { teamSchema } from './team-schema.js';
-
-
-export const userRoleEnum = pgEnum('user_role', UserRole);
+import { userRoleEnum } from './user-schema.js';
 
 //Represent the schema definition for the "TEAM_MEMBER" table in a PostgreSQL database
 export const teamMemberSchema = pgTable('TEAM_MEMBER', {

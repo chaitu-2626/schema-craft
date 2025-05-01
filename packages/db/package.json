@@ -11,9 +11,10 @@
 		"clean": "rimraf dist",
 		"dev": "pnpm clean && tsc --build --watch",
 		"build": "pnpm clean && tsc --build && tsc-alias",
-		"db:generate": "pnpm build && npx drizzle-kit generate --name=initial_migration --config dist/drizzle.config.js",
+		"db:generate": "pnpm build && npx drizzle-kit generate --name=updated_clerkId_as_primaryKey --config dist/drizzle.config.js",
 		"db:migrate": "npx drizzle-kit migrate --config dist/drizzle.config.js",
-		"db:seed": "cross-env DB_SEEDING=true tsx src/seed.ts",
+		"db:seed": "cross-env DB_SEEDING=true node dist/src/seed.js",
+		"db:export": "npx drizzle-kit export --config dist/drizzle.config.js",
 		"db:studio": "npx drizzle-kit studio --config dist/drizzle.config.js --verbose"
 	},
 	"keywords": [],

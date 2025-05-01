@@ -1,27 +1,41 @@
-// db/schema/user.ts
 import {
 	pgTable,
 	uuid,
 	varchar,
 	timestamp,
-	boolean,
-	check
+	pgEnum,
+	index
 } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
-import { MAX_USER_NAME_LENGTH } from '@schema-craft/types'
+import { UserRole } from '@schema-craft/types';
 
+export const userRoleEnum = pgEnum('user_role', UserRole);
+
+/**
+ * USER table
+ * Stores user identity and authentication-related metadata.
+ */
 export const userSchema = pgTable(
 	'USER',
 	{
-		id: uuid('id').defaultRandom().primaryKey(),
-		name: varchar('name', { length: MAX_USER_NAME_LENGTH }).notNull(),
-		email: varchar('email', { length: 255 }).unique().notNull(),
-		password: varchar('password', { length: 255 }).notNull(),
-		profilePhoto: varchar('profile_photo', { length: 1024 }),
-		twoFactorEnabled: boolean('two_factor_enabled').default(false),
+		/**
+		 * Clerk User ID used for external identity mapping.
+		 */
+		id: varchar('user_id', { length: 64 }).primaryKey().unique().notNull(),
+
+		/**
+		 * Role assigned to the user (e.g., admin, member, viewer).
+		*/
+		userRole: userRoleEnum().default(UserRole.Viewer),
+
+		/**
+		 * Timestamp of when the user account was created.
+		 */
 		createdAt: timestamp('created_at').defaultNow(),
-	},
-	(table) => [
-		check('name_check', sql`LENGTH(${table.name}) >= 4`)
-	]
+
+		/**
+		 * Timestamp of the last update to the user record.
+		 */
+		updatedAt: timestamp('updated_at').$onUpdate(() => sql`now()`),
+	}
 );
