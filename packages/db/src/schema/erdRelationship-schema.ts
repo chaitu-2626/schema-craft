@@ -44,7 +44,6 @@ export const erdRelationshipSchema = pgTable('ERD_RELATIONSHIP', {
 	updatedAt: timestamp('erd_updated_at').$onUpdate(() => sql`now()`),
 
 	updatedBy: uuid('erd_updated_by')
-		.notNull()
 		.references(() => userSchema.id, { onDelete: 'set null' }),
 },
 	(table) => [
