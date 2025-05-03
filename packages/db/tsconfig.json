@@ -7,16 +7,14 @@
 		"paths": {
 			"@/*": ["src/*"],
 			"$/*": ["*"],
+			"@config": ["src/config/index.js"],
 			"@schema": ["src/schema/index.js"],
 			"@seed": ["src/seed/index.js"],
 			"@seedData": ["src/seed/data/index.js"],
-			"@seeder": ["src/seed.js"],
-			"@env": ["src/env.js"],
-			"@migrate": ["src/migrate.js"],
-			"@type": ["src/types.js"],
-			"@app": ["src/index.js"]
+			"@types": ["src/types/index.js"],
+			"@client": ["src/client.js"]
 		}
 	},
-	"include": ["src/**/*.ts", "src/**/*.json", "drizzle.config.ts"],
+	"include": ["src/**/*.ts", "src/**/*.json", "drizzle-dev.config.ts"],
 	"exclude": ["node_modules", "dist"]
 }
