@@ -5,7 +5,7 @@ import {
 	index,
 	timestamp,
 } from 'drizzle-orm/pg-core';
-import { relations } from 'drizzle-orm';
+import { relations, sql } from 'drizzle-orm';
 import { erdDiagramSchema } from './erdDiagram-schema.js';
 import { erdAttributeSchema } from './erdAttribute-schema.js';
 import { userSchema } from './user-schema.js';
@@ -38,7 +38,7 @@ export const erdEntitySchema = pgTable('ERD_ENTITY', {
 		.notNull()
 		.references(() => userSchema.id),
 
-	updatedAt: timestamp('erd_updated_at'),
+	updatedAt: timestamp('erd_updated_at').$onUpdate(() => sql`now()`),
 
 	updatedBy: uuid('erd_updated_by')
 		.notNull()

@@ -5,7 +5,7 @@ import {
 	timestamp,
 	index
 } from 'drizzle-orm/pg-core';
-import { relations } from 'drizzle-orm';
+import { relations, sql } from 'drizzle-orm';
 import { teamMemberSchema } from './teamMember-schema.js';
 import { userSchema } from './user-schema.js';
 
@@ -23,7 +23,7 @@ export const teamSchema = pgTable('TEAM', {
 
 	createdAt: timestamp('created_at').defaultNow(),
 
-	updatedAt: timestamp('updated_at'),
+	updatedAt: timestamp('updated_at').$onUpdate(() => sql`now()`),
 
 	updatedBy: uuid('updated_by').references(() => userSchema.id, { onDelete: 'set null' })
 }, (table) => [

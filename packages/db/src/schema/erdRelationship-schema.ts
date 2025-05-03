@@ -6,6 +6,7 @@ import {
 	pgEnum,
 	primaryKey,
 } from 'drizzle-orm/pg-core';
+import { sql } from 'drizzle-orm';
 import { RelationshipType } from '@schema-craft/types';
 import { erdAttributeSchema } from './erdAttribute-schema.js';
 import { userSchema } from './user-schema.js';
@@ -29,6 +30,7 @@ export const erdRelationshipSchema = pgTable('ERD_RELATIONSHIP', {
 
 	//By default no relationship is created between the two attributes.
 	relationshipType: relationshipTypeEnum()
+		.notNull()
 		.default(RelationshipType.None),
 
 	createdAt: timestamp('erd_created_at')
@@ -39,7 +41,7 @@ export const erdRelationshipSchema = pgTable('ERD_RELATIONSHIP', {
 		.notNull()
 		.references(() => userSchema.id),
 
-	updatedAt: timestamp('erd_updated_at'),
+	updatedAt: timestamp('erd_updated_at').$onUpdate(() => sql`now()`),
 
 	updatedBy: uuid('erd_updated_by')
 		.notNull()

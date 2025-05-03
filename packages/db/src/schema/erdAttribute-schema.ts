@@ -68,7 +68,7 @@ export const erdAttributeSchema = pgTable('ERD_ATTRIBUTE', {
         .notNull()
         .references(() => userSchema.id),
 
-    updatedAt: timestamp('erd_updated_at').defaultNow(),
+    updatedAt: timestamp('erd_updated_at').$onUpdate(() => sql`now()`),
 
     updatedBy: uuid('erd_updated_by')
         .references(() => userSchema.id, { onDelete: 'set null' }),

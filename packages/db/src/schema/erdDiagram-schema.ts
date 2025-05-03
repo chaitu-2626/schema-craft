@@ -4,9 +4,9 @@ import {
 	varchar,
 	timestamp,
 	index,
-	pgEnum,
+	pgEnum
 } from 'drizzle-orm/pg-core';
-import { relations } from 'drizzle-orm';
+import { relations, sql } from 'drizzle-orm';
 import { DiagramVisibility, DatabaseType } from '@schema-craft/types';
 import { teamSchema } from './team-schema.js';
 import { userSchema } from './user-schema.js';
@@ -38,11 +38,12 @@ export const erdDiagramSchema = pgTable('ERD_DIAGRAM', {
 
 	// Diagram visibility (Private or Public)
 	visibility: visibilityEnum()
+		.notNull()
 		.default(DiagramVisibility.Private),
 
 	createdAt: timestamp('erd_diagram_created_at').defaultNow(),
 
-	updatedAt: timestamp('erd_diagram_updated_at'),
+	updatedAt: timestamp('erd_diagram_updated_at').$onUpdate(() => sql`now()`),
 
 	// When the last updated user is deleted, their value will be set to null
 	updatedBy: uuid('erd_diagram_updated_by')
@@ -50,6 +51,7 @@ export const erdDiagramSchema = pgTable('ERD_DIAGRAM', {
 
 	// Database type for the schema (MySQL, PostgreSQL, or SQL Server)
 	databaseType: databaseTypeEnum()
+		.notNull()
 		.default(DatabaseType.MySQL),
 
 }, (table) => [

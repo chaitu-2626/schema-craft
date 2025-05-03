@@ -1,10 +1,8 @@
 import {
 	pgTable,
-	uuid,
 	varchar,
 	timestamp,
-	pgEnum,
-	index
+	pgEnum
 } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
 import { UserRole } from '@schema-craft/types';
@@ -26,7 +24,7 @@ export const userSchema = pgTable(
 		/**
 		 * Role assigned to the user (e.g., admin, member, viewer).
 		*/
-		userRole: userRoleEnum().default(UserRole.Viewer),
+		userRole: userRoleEnum().notNull().default(UserRole.Viewer),
 
 		/**
 		 * Timestamp of when the user account was created.

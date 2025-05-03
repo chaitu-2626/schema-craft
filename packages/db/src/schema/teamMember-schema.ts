@@ -27,7 +27,7 @@ export const teamMemberSchema = pgTable('TEAM_MEMBER', {
         .notNull()
         .references(() => userSchema.id, { onDelete: 'cascade' }),
 
-    userRole: userRoleEnum().default(UserRole.Viewer),
+    userRole: userRoleEnum().notNull().default(UserRole.Viewer),
 
     joinedAt: timestamp('joined_at'),
 
