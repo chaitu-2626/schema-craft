@@ -40,7 +40,9 @@ export type EnvSchemaType = z.infer<typeof EnvSchema>;
 /**
  * Load and expand .env variables into `process.env`
  */
-expand(config());
+// Load environment-specific file based on NODE_ENV
+const envFile = `.env.${process.env.NODE_ENV || 'development'}`;
+expand(config({ path: envFile }));
 
 /**
  * Try parsing the environment using our schema.
