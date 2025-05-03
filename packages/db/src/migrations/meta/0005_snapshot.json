@@ -1,0 +1,1076 @@
+{
+  "id": "bb514d0d-a052-4357-b373-adeb8e801132",
+  "prevId": "b6076d21-af1b-4fe4-bb94-8beabf2c8cf7",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.ERD_ATTRIBUTE": {
+      "name": "ERD_ATTRIBUTE",
+      "schema": "",
+      "columns": {
+        "erd_attribute_id": {
+          "name": "erd_attribute_id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "erd_entity_id": {
+          "name": "erd_entity_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "erd_attribute_name": {
+          "name": "erd_attribute_name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dataType": {
+          "name": "dataType",
+          "type": "erd_data_type",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'INT'"
+        },
+        "erd_is_nullable": {
+          "name": "erd_is_nullable",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "erd_is_auto_increment": {
+          "name": "erd_is_auto_increment",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "erd_is_unsigned": {
+          "name": "erd_is_unsigned",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "indexType": {
+          "name": "indexType",
+          "type": "erd_index_type",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'none'"
+        },
+        "erd_default_value": {
+          "name": "erd_default_value",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "erd_enum_values": {
+          "name": "erd_enum_values",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "erd_column_index": {
+          "name": "erd_column_index",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "erd_created_at": {
+          "name": "erd_created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "erd_created_by": {
+          "name": "erd_created_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "erd_updated_at": {
+          "name": "erd_updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "erd_updated_by": {
+          "name": "erd_updated_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "idx_erd_attribute_entity_id": {
+          "name": "idx_erd_attribute_entity_id",
+          "columns": [
+            {
+              "expression": "erd_entity_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "ERD_ATTRIBUTE_erd_entity_id_ERD_ENTITY_erd_entity_id_fk": {
+          "name": "ERD_ATTRIBUTE_erd_entity_id_ERD_ENTITY_erd_entity_id_fk",
+          "tableFrom": "ERD_ATTRIBUTE",
+          "tableTo": "ERD_ENTITY",
+          "columnsFrom": [
+            "erd_entity_id"
+          ],
+          "columnsTo": [
+            "erd_entity_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "ERD_ATTRIBUTE_erd_created_by_USER_user_id_fk": {
+          "name": "ERD_ATTRIBUTE_erd_created_by_USER_user_id_fk",
+          "tableFrom": "ERD_ATTRIBUTE",
+          "tableTo": "USER",
+          "columnsFrom": [
+            "erd_created_by"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "ERD_ATTRIBUTE_erd_updated_by_USER_user_id_fk": {
+          "name": "ERD_ATTRIBUTE_erd_updated_by_USER_user_id_fk",
+          "tableFrom": "ERD_ATTRIBUTE",
+          "tableTo": "USER",
+          "columnsFrom": [
+            "erd_updated_by"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "check_column_index_non_negative": {
+          "name": "check_column_index_non_negative",
+          "value": "\"ERD_ATTRIBUTE\".\"erd_column_index\" >= 0"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.ERD_DIAGRAM": {
+      "name": "ERD_DIAGRAM",
+      "schema": "",
+      "columns": {
+        "erd_diagram_id": {
+          "name": "erd_diagram_id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "erd_team_id": {
+          "name": "erd_team_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "erd_owner_id": {
+          "name": "erd_owner_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "erd_diagram_name": {
+          "name": "erd_diagram_name",
+          "type": "varchar(300)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "visibility": {
+          "name": "visibility",
+          "type": "erd_diagram_visibility",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'private'"
+        },
+        "erd_diagram_created_at": {
+          "name": "erd_diagram_created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "erd_diagram_updated_at": {
+          "name": "erd_diagram_updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "erd_diagram_updated_by": {
+          "name": "erd_diagram_updated_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "databaseType": {
+          "name": "databaseType",
+          "type": "erd_diagram_database_type",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'mysql'"
+        }
+      },
+      "indexes": {
+        "idx_erd_diagram_team_id": {
+          "name": "idx_erd_diagram_team_id",
+          "columns": [
+            {
+              "expression": "erd_team_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "idx_erd_diagram_owner_id": {
+          "name": "idx_erd_diagram_owner_id",
+          "columns": [
+            {
+              "expression": "erd_owner_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "ERD_DIAGRAM_erd_team_id_TEAM_team_id_fk": {
+          "name": "ERD_DIAGRAM_erd_team_id_TEAM_team_id_fk",
+          "tableFrom": "ERD_DIAGRAM",
+          "tableTo": "TEAM",
+          "columnsFrom": [
+            "erd_team_id"
+          ],
+          "columnsTo": [
+            "team_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "ERD_DIAGRAM_erd_owner_id_USER_user_id_fk": {
+          "name": "ERD_DIAGRAM_erd_owner_id_USER_user_id_fk",
+          "tableFrom": "ERD_DIAGRAM",
+          "tableTo": "USER",
+          "columnsFrom": [
+            "erd_owner_id"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "ERD_DIAGRAM_erd_diagram_updated_by_USER_user_id_fk": {
+          "name": "ERD_DIAGRAM_erd_diagram_updated_by_USER_user_id_fk",
+          "tableFrom": "ERD_DIAGRAM",
+          "tableTo": "USER",
+          "columnsFrom": [
+            "erd_diagram_updated_by"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.ERD_ENTITY": {
+      "name": "ERD_ENTITY",
+      "schema": "",
+      "columns": {
+        "erd_entity_id": {
+          "name": "erd_entity_id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "erd_diagram_id": {
+          "name": "erd_diagram_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "erd_entity_name": {
+          "name": "erd_entity_name",
+          "type": "varchar(200)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "erd_entity_color": {
+          "name": "erd_entity_color",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "erd_created_at": {
+          "name": "erd_created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "erd_created_by": {
+          "name": "erd_created_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "erd_updated_at": {
+          "name": "erd_updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "erd_updated_by": {
+          "name": "erd_updated_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "idx_erd_entity_diagram_id": {
+          "name": "idx_erd_entity_diagram_id",
+          "columns": [
+            {
+              "expression": "erd_diagram_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "ERD_ENTITY_erd_diagram_id_ERD_DIAGRAM_erd_diagram_id_fk": {
+          "name": "ERD_ENTITY_erd_diagram_id_ERD_DIAGRAM_erd_diagram_id_fk",
+          "tableFrom": "ERD_ENTITY",
+          "tableTo": "ERD_DIAGRAM",
+          "columnsFrom": [
+            "erd_diagram_id"
+          ],
+          "columnsTo": [
+            "erd_diagram_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "ERD_ENTITY_erd_created_by_USER_user_id_fk": {
+          "name": "ERD_ENTITY_erd_created_by_USER_user_id_fk",
+          "tableFrom": "ERD_ENTITY",
+          "tableTo": "USER",
+          "columnsFrom": [
+            "erd_created_by"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "ERD_ENTITY_erd_updated_by_USER_user_id_fk": {
+          "name": "ERD_ENTITY_erd_updated_by_USER_user_id_fk",
+          "tableFrom": "ERD_ENTITY",
+          "tableTo": "USER",
+          "columnsFrom": [
+            "erd_updated_by"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.ERD_RELATIONSHIP": {
+      "name": "ERD_RELATIONSHIP",
+      "schema": "",
+      "columns": {
+        "erd_from_attribute_id": {
+          "name": "erd_from_attribute_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "erd_to_attribute_id": {
+          "name": "erd_to_attribute_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "relationshipType": {
+          "name": "relationshipType",
+          "type": "erd_relationship_type",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'none'"
+        },
+        "erd_created_at": {
+          "name": "erd_created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "erd_created_by": {
+          "name": "erd_created_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "erd_updated_at": {
+          "name": "erd_updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "erd_updated_by": {
+          "name": "erd_updated_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "idx_erd_relationship_from_attribute_id": {
+          "name": "idx_erd_relationship_from_attribute_id",
+          "columns": [
+            {
+              "expression": "erd_from_attribute_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "idx_erd_relationship_to_attribute_id": {
+          "name": "idx_erd_relationship_to_attribute_id",
+          "columns": [
+            {
+              "expression": "erd_to_attribute_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "ERD_RELATIONSHIP_erd_from_attribute_id_ERD_ATTRIBUTE_erd_attribute_id_fk": {
+          "name": "ERD_RELATIONSHIP_erd_from_attribute_id_ERD_ATTRIBUTE_erd_attribute_id_fk",
+          "tableFrom": "ERD_RELATIONSHIP",
+          "tableTo": "ERD_ATTRIBUTE",
+          "columnsFrom": [
+            "erd_from_attribute_id"
+          ],
+          "columnsTo": [
+            "erd_attribute_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "ERD_RELATIONSHIP_erd_to_attribute_id_ERD_ATTRIBUTE_erd_attribute_id_fk": {
+          "name": "ERD_RELATIONSHIP_erd_to_attribute_id_ERD_ATTRIBUTE_erd_attribute_id_fk",
+          "tableFrom": "ERD_RELATIONSHIP",
+          "tableTo": "ERD_ATTRIBUTE",
+          "columnsFrom": [
+            "erd_to_attribute_id"
+          ],
+          "columnsTo": [
+            "erd_attribute_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "ERD_RELATIONSHIP_erd_created_by_USER_user_id_fk": {
+          "name": "ERD_RELATIONSHIP_erd_created_by_USER_user_id_fk",
+          "tableFrom": "ERD_RELATIONSHIP",
+          "tableTo": "USER",
+          "columnsFrom": [
+            "erd_created_by"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "ERD_RELATIONSHIP_erd_updated_by_USER_user_id_fk": {
+          "name": "ERD_RELATIONSHIP_erd_updated_by_USER_user_id_fk",
+          "tableFrom": "ERD_RELATIONSHIP",
+          "tableTo": "USER",
+          "columnsFrom": [
+            "erd_updated_by"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "ERD_RELATIONSHIP_erd_from_attribute_id_erd_to_attribute_id_pk": {
+          "name": "ERD_RELATIONSHIP_erd_from_attribute_id_erd_to_attribute_id_pk",
+          "columns": [
+            "erd_from_attribute_id",
+            "erd_to_attribute_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.FAVORITE": {
+      "name": "FAVORITE",
+      "schema": "",
+      "columns": {
+        "team_id": {
+          "name": "team_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "erd_diagram_id": {
+          "name": "erd_diagram_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "favorite_at": {
+          "name": "favorite_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "idx_favorite_team_id": {
+          "name": "idx_favorite_team_id",
+          "columns": [
+            {
+              "expression": "team_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "idx_favorite_user_id": {
+          "name": "idx_favorite_user_id",
+          "columns": [
+            {
+              "expression": "user_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "FAVORITE_team_id_TEAM_team_id_fk": {
+          "name": "FAVORITE_team_id_TEAM_team_id_fk",
+          "tableFrom": "FAVORITE",
+          "tableTo": "TEAM",
+          "columnsFrom": [
+            "team_id"
+          ],
+          "columnsTo": [
+            "team_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "FAVORITE_user_id_USER_user_id_fk": {
+          "name": "FAVORITE_user_id_USER_user_id_fk",
+          "tableFrom": "FAVORITE",
+          "tableTo": "USER",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "FAVORITE_erd_diagram_id_ERD_DIAGRAM_erd_diagram_id_fk": {
+          "name": "FAVORITE_erd_diagram_id_ERD_DIAGRAM_erd_diagram_id_fk",
+          "tableFrom": "FAVORITE",
+          "tableTo": "ERD_DIAGRAM",
+          "columnsFrom": [
+            "erd_diagram_id"
+          ],
+          "columnsTo": [
+            "erd_diagram_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "FAVORITE_user_id_erd_diagram_id_pk": {
+          "name": "FAVORITE_user_id_erd_diagram_id_pk",
+          "columns": [
+            "user_id",
+            "erd_diagram_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.TEAM_MEMBER": {
+      "name": "TEAM_MEMBER",
+      "schema": "",
+      "columns": {
+        "team_id": {
+          "name": "team_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "userRole": {
+          "name": "userRole",
+          "type": "user_role",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'viewer'"
+        },
+        "joined_at": {
+          "name": "joined_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "invited_at": {
+          "name": "invited_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "invite_accepted": {
+          "name": "invite_accepted",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        }
+      },
+      "indexes": {
+        "idx_team_member_team_id": {
+          "name": "idx_team_member_team_id",
+          "columns": [
+            {
+              "expression": "team_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "idx_team_member_user_id": {
+          "name": "idx_team_member_user_id",
+          "columns": [
+            {
+              "expression": "user_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "TEAM_MEMBER_team_id_TEAM_team_id_fk": {
+          "name": "TEAM_MEMBER_team_id_TEAM_team_id_fk",
+          "tableFrom": "TEAM_MEMBER",
+          "tableTo": "TEAM",
+          "columnsFrom": [
+            "team_id"
+          ],
+          "columnsTo": [
+            "team_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "TEAM_MEMBER_user_id_USER_user_id_fk": {
+          "name": "TEAM_MEMBER_user_id_USER_user_id_fk",
+          "tableFrom": "TEAM_MEMBER",
+          "tableTo": "USER",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "TEAM_MEMBER_team_id_user_id_pk": {
+          "name": "TEAM_MEMBER_team_id_user_id_pk",
+          "columns": [
+            "team_id",
+            "user_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.TEAM": {
+      "name": "TEAM",
+      "schema": "",
+      "columns": {
+        "team_id": {
+          "name": "team_id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "logo_photo": {
+          "name": "logo_photo",
+          "type": "varchar(1024)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "owner_id": {
+          "name": "owner_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "idx_team_owner_id": {
+          "name": "idx_team_owner_id",
+          "columns": [
+            {
+              "expression": "owner_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "TEAM_owner_id_USER_user_id_fk": {
+          "name": "TEAM_owner_id_USER_user_id_fk",
+          "tableFrom": "TEAM",
+          "tableTo": "USER",
+          "columnsFrom": [
+            "owner_id"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "TEAM_updated_by_USER_user_id_fk": {
+          "name": "TEAM_updated_by_USER_user_id_fk",
+          "tableFrom": "TEAM",
+          "tableTo": "USER",
+          "columnsFrom": [
+            "updated_by"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.USER": {
+      "name": "USER",
+      "schema": "",
+      "columns": {
+        "user_id": {
+          "name": "user_id",
+          "type": "varchar(64)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "userRole": {
+          "name": "userRole",
+          "type": "user_role",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'viewer'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "USER_user_id_unique": {
+          "name": "USER_user_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "user_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.erd_data_type": {
+      "name": "erd_data_type",
+      "schema": "public",
+      "values": [
+        "TINYINT",
+        "SMALLINT",
+        "MEDIUMINT",
+        "INT",
+        "INTEGER",
+        "BIGINT",
+        "DECIMAL",
+        "NUMERIC",
+        "FLOAT",
+        "DOUBLE",
+        "BIT",
+        "BOOLEAN",
+        "CHAR",
+        "VARCHAR",
+        "TINYTEXT",
+        "TEXT",
+        "MEDIUMTEXT",
+        "LONGTEXT",
+        "BINARY",
+        "VARBINARY",
+        "TINYBLOB",
+        "BLOB",
+        "MEDIUMBLOB",
+        "LONGBLOB",
+        "ENUM",
+        "SET",
+        "DATE",
+        "DATETIME",
+        "TIMESTAMP",
+        "TIME",
+        "YEAR",
+        "JSON",
+        "GEOMETRY",
+        "POINT",
+        "LINESTRING",
+        "POLYGON",
+        "MULTIPOINT",
+        "MULTILINESTRING",
+        "MULTIPOLYGON",
+        "GEOMETRYCOLLECTION"
+      ]
+    },
+    "public.erd_diagram_database_type": {
+      "name": "erd_diagram_database_type",
+      "schema": "public",
+      "values": [
+        "mysql",
+        "postgresql",
+        "sqlserver"
+      ]
+    },
+    "public.erd_index_type": {
+      "name": "erd_index_type",
+      "schema": "public",
+      "values": [
+        "primary",
+        "unique",
+        "index",
+        "none"
+      ]
+    },
+    "public.erd_relationship_type": {
+      "name": "erd_relationship_type",
+      "schema": "public",
+      "values": [
+        "1:1",
+        "1:n",
+        "n:1",
+        "none"
+      ]
+    },
+    "public.user_role": {
+      "name": "user_role",
+      "schema": "public",
+      "values": [
+        "admin",
+        "member",
+        "viewer"
+      ]
+    },
+    "public.erd_diagram_visibility": {
+      "name": "erd_diagram_visibility",
+      "schema": "public",
+      "values": [
+        "public",
+        "private"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

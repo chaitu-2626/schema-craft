@@ -29,6 +29,27 @@
       "when": 1746098384109,
       "tag": "0003_updated_clerkId_as_primaryKey",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1746269045441,
+      "tag": "0004_faithful_marvel_boy",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1746279694551,
+      "tag": "0005_funny_cargill",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1746279950691,
+      "tag": "0006_gifted_jocasta",
+      "breakpoints": true
     }
   ]
 }
