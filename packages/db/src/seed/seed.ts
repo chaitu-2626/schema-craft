@@ -1,6 +1,6 @@
 import { Table, getTableName, sql } from "drizzle-orm";
-import { type DrizzleClientType, drizzleClient } from '@app';
-import env from "@env";
+import { type DrizzleClientType, drizzleClient } from '@client';
+import { env } from "@config";
 import { erdAttributeSchema, erdDiagramSchema, erdEntitySchema, erdRelationshipSchema, favoriteSchema, teamMemberSchema, teamSchema, userSchema } from "@schema";
 import { erdAttributeSeeder, erdDiagramSeeder, erdEntitySeeder, erdRelationshipSeeder, favoriteSeeder, teamMemberSeeder, teamSeeder, userSeeder } from "@seed";
 
@@ -19,9 +19,9 @@ async function resetTable(db: DrizzleClientType, table: Table) {
         );
     } catch (error) {
         if (error instanceof Error) {
-            console.error(`⚠️ Failed to reset table "${tableName}": ${error.message}`);
+            console.error(`Failed to reset table "${tableName}": ${error.message}`);
         } else {
-            console.error(`⚠️ Failed to reset table "${tableName}": Unknown error`);
+            console.error(`Failed to reset table "${tableName}": Unknown error`);
         }
     }
 }
@@ -62,6 +62,6 @@ async function main() {
 }
 
 main().catch((err) => {
-    console.error("❌ Seeding failed:", err);
+    console.error("Seeding failed:", err);
     process.exit(1);
 });
